@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fotos/nave_personagem.png" type="Texture" id=1]
+[ext_resource path="res://primeiraFase/script_nave_personagem.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64, 21 )
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 507, 542 )
+
+[node name="Personagem" type="KinematicBody2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Personagem"]
+position = Vector2( -7.62939e-06, 2 )
+rotation = -0.00548665
+scale = Vector2( 1.05159, 0.937217 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 352, 234, 156, 48 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Personagem"]
+position = Vector2( 5, 0 )
+shape = SubResource( 1 )
+
+[node name="Position2D" type="Position2D" parent="Personagem"]
+position = Vector2( 104, 1 )
