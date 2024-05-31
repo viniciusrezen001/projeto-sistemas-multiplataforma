@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fotos/nave_personagem.png" type="Texture" id=1]
+[ext_resource path="res://primeiraFase/script_inimigo_disparo.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30, 6 )
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 539, 419 )
+
+[node name="tiroInimigo" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="tiroInimigo"]
+position = Vector2( 7, 1.24999 )
+scale = Vector2( 1.87879, 1.27778 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 201, 641, 33, 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tiroInimigo"]
+position = Vector2( 7, 1 )
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="tiroInimigo" to="tiroInimigo" method="_on_Area2D_body_entered"]

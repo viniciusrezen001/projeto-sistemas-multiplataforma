@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://fotos/nave_personagem.png" type="Texture" id=1]
+[ext_resource path="res://fotos/explosao.png" type="Texture" id=2]
+[ext_resource path="res://primeiraFase/script_nave_inimiga.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 61, 19.5 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "explodindo"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "voando"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 1273, 413 )
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Area2D"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 352, 234, 156, 48 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 2, 0.5 )
+shape = SubResource( 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Area2D"]
+position = Vector2( -4, -10 )
+texture = ExtResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 14.1
+scale_amount = 0.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D"]
+autoplay = "voando"
+anims/RESET = SubResource( 2 )
+anims/explodindo = SubResource( 3 )
+anims/voando = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="Area2D"]
+wait_time = 1.5
+autostart = true
+
+[node name="Position2D" type="Position2D" parent="Area2D"]
+position = Vector2( -75, 2 )
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="animation_finished" from="Area2D/AnimationPlayer" to="Area2D" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Area2D/Timer" to="Area2D" method="inimigo_atira"]

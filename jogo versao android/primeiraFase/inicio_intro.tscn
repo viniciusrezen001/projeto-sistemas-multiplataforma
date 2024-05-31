@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://video/video_intro3.webm" type="VideoStream" id=1]
+[ext_resource path="res://primeiraFase/VideoPlayer.gd" type="Script" id=3]
+
+[node name="Nodevideo" type="Node2D"]
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+margin_left = -8.0
+margin_top = -2.0
+margin_right = 1029.0
+margin_bottom = 604.0
+stream = ExtResource( 1 )
+autoplay = true
+script = ExtResource( 3 )
+
+[connection signal="finished" from="VideoPlayer" to="VideoPlayer" method="_on_VideoPlayer_finished"]

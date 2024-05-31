@@ -1,0 +1,277 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://fotos/personagem_jedi.png" type="Texture" id=1]
+[ext_resource path="res://segundaFase/fasedois_script_personagem.gd" type="Script" id=2]
+[ext_resource path="res://fonts/BlackOpsOne-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fotos/ferramentas2.png" type="Texture" id=4]
+[ext_resource path="res://fotos/botao_cima.png" type="Texture" id=5]
+[ext_resource path="res://fotos/botao_esquerda.png" type="Texture" id=6]
+[ext_resource path="res://fotos/botao_direita.png" type="Texture" id=7]
+[ext_resource path="res://fotos/botao_y.png" type="Texture" id=8]
+[ext_resource path="res://fotos/botao_t.png" type="Texture" id=9]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 34.0
+height = 48.0
+
+[sub_resource type="GDScript" id=9]
+script/source = "extends CollisionShape2D
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 12, 0, 18, 48 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "ataque"
+length = 0.4
+loop = true
+step = 0.09
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.09, 0.18, 0.27, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 376, 568, 39, 51 ), Rect2( 6, 571, 60, 46 ), Rect2( 79, 571, 54, 46 ), Rect2( 221, 570, 69, 48 ), Rect2( 376, 568, 39, 51 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "ataque_pulo"
+length = 0.4
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 19, 731, 53, 56 ), Rect2( 104, 743, 64, 32 ), Rect2( 181, 727, 69, 64 ), Rect2( 270, 737, 31, 64 ), Rect2( 312, 741, 58, 56 ), Rect2( 111, 815, 70, 67 ), Rect2( 235, 815, 21, 67 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "carrendo"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 406, 54, 30, 40 ), Rect2( 352, 51, 39, 46 ), Rect2( 305, 51, 32, 45 ), Rect2( 260, 51, 22, 45 ), Rect2( 210, 51, 22, 46 ), Rect2( 155, 51, 32, 46 ), Rect2( 107, 51, 28, 46 ), Rect2( 59, 51, 24, 46 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "parado"
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 12, 0, 18, 48 ), Rect2( 61, 0, 21, 48 ), Rect2( 111, 0, 21, 48 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "pulando"
+length = 1.4
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 207, 229, 27, 40 ), Rect2( 59, 232, 24, 34 ), Rect2( 109, 232, 24, 34 ), Rect2( 159, 232, 24, 34 ), Rect2( 257, 228, 27, 41 ), Rect2( 307, 229, 27, 40 ), Rect2( 9, 227, 23, 44 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.219608, 0.439216, 0.0235294, 0.435294 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 40
+font_data = ExtResource( 3 )
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 458, 274 )
+
+[node name="jedi" type="KinematicBody2D" parent="."]
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jedi"]
+position = Vector2( 25, 4 )
+shape = SubResource( 1 )
+script = SubResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="jedi"]
+position = Vector2( 25, 3 )
+scale = Vector2( 2.81496, 2.51563 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 12, 0, 18, 48 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="jedi"]
+anims/RESET = SubResource( 2 )
+anims/ataque = SubResource( 6 )
+anims/ataque_pulo = SubResource( 7 )
+anims/carrendo = SubResource( 4 )
+anims/parado = SubResource( 3 )
+anims/pulando = SubResource( 5 )
+
+[node name="Position2D" type="Position2D" parent="jedi"]
+position = Vector2( 33, -1 )
+
+[node name="Camera2D" type="Camera2D" parent="jedi"]
+position = Vector2( -7, 4 )
+rotating = true
+current = true
+zoom = Vector2( 1.5, 1.5 )
+
+[node name="ProgressBar" type="ProgressBar" parent="jedi"]
+margin_left = -41.0
+margin_top = -89.0
+margin_right = 103.0
+margin_bottom = -75.0
+custom_styles/fg = SubResource( 10 )
+max_value = 7.0
+step = 1.0
+value = 7.0
+
+[node name="Chances" type="Label" parent="jedi"]
+margin_left = -691.0
+margin_top = -436.0
+margin_right = -434.0
+margin_bottom = -385.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Vidas: 2"
+
+[node name="Martelo" type="Label" parent="jedi"]
+margin_left = -310.0
+margin_top = -424.0
+margin_right = -53.0
+margin_bottom = -373.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Vidas: 2"
+
+[node name="Fixa" type="Label" parent="jedi"]
+margin_left = 64.0
+margin_top = -421.0
+margin_right = 321.0
+margin_bottom = -370.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Vidas: 2"
+
+[node name="Fenda" type="Label" parent="jedi"]
+margin_left = 453.0
+margin_top = -423.0
+margin_right = 710.0
+margin_bottom = -372.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "Vidas: 2"
+
+[node name="Sprite2" type="Sprite" parent="jedi"]
+position = Vector2( -169, -393 )
+scale = Vector2( 0.579546, 0.576271 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 292, 173, 132, 118 )
+
+[node name="Sprite3" type="Sprite" parent="jedi"]
+position = Vector2( 582, -393 )
+scale = Vector2( 0.579546, 0.576271 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 153, 180, 112, 111 )
+
+[node name="Sprite4" type="Sprite" parent="jedi"]
+position = Vector2( 197, -392 )
+scale = Vector2( 0.579546, 0.576271 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 28, 41, 104, 104 )
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="jedi"]
+position = Vector2( -635, 273 )
+normal = ExtResource( 8 )
+action = "BaterPulando"
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="jedi"]
+position = Vector2( -536, 137 )
+scale = Vector2( 1.02994, 0.966851 )
+normal = ExtResource( 7 )
+action = "ui_right"
+
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="jedi"]
+position = Vector2( -752, 141 )
+scale = Vector2( 1, 0.98895 )
+normal = ExtResource( 6 )
+action = "ui_left"
+
+[node name="TouchScreenButton5" type="TouchScreenButton" parent="jedi"]
+position = Vector2( 388, 229 )
+scale = Vector2( 1, 1.0303 )
+normal = ExtResource( 9 )
+action = "bater"
+
+[node name="TouchScreenButton6" type="TouchScreenButton" parent="jedi"]
+position = Vector2( 558, 234 )
+normal = ExtResource( 5 )
+action = "ui_up"
+
+[connection signal="mouse_entered" from="jedi" to="jedi" method="_colision_personagem_entered"]

@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://fotos/nave_personagem.png" type="Texture" id=1]
+[ext_resource path="res://terceirafase/script_nave_consertada.gd" type="Script" id=2]
+[ext_resource path="res://fotos/botao_cima.png" type="Texture" id=3]
+[ext_resource path="res://fotos/botao_esquerda.png" type="Texture" id=4]
+[ext_resource path="res://fotos/botao_direita.png" type="Texture" id=5]
+[ext_resource path="res://fotos/botao_baixo.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 203, 74 )
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 366, 310 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( -86, -18 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+position = Vector2( -95.75, -24.5 )
+scale = Vector2( 2.41987, 2.3125 )
+texture = ExtResource( 1 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 352, 234, 156, 48 )
+
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
+rotating = true
+current = true
+zoom = Vector2( 2, 2 )
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="KinematicBody2D"]
+position = Vector2( -804, 410 )
+normal = ExtResource( 6 )
+action = "pbaixo"
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="KinematicBody2D"]
+position = Vector2( -814, 125 )
+normal = ExtResource( 3 )
+action = "pcima"
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="KinematicBody2D"]
+position = Vector2( -958, 265 )
+normal = ExtResource( 4 )
+action = "ptras"
+
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="KinematicBody2D"]
+position = Vector2( -663, 268 )
+normal = ExtResource( 5 )
+action = "pfrente"

@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://multiplayer/cene-playerum.tscn" type="PackedScene" id=1]
+[ext_resource path="res://multiplayer/cena_playerdois.tscn" type="PackedScene" id=2]
+[ext_resource path="res://multiplayer/script_fase_multiplayer.gd" type="Script" id=3]
+[ext_resource path="res://multiplayer/cena_fundo_multiplayer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://primeiraFase/cena_nave_inimiga.tscn" type="PackedScene" id=5]
+[ext_resource path="res://multiplayer/cena_vida_dupla.tscn" type="PackedScene" id=6]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 103, 203 )
+
+[node name="Node2D2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 84, 480 )
+
+[node name="Node2D3" parent="." instance=ExtResource( 4 )]
+position = Vector2( -60, -100 )
+
+[node name="Node2D4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1326, 384 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Node2D5" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1510, 295 )
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_inimigo_aparece_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_aparecer_vida_equipe_timeout"]
