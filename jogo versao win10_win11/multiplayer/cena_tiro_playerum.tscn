@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://multiplayer/script_tiro_playerum.gd" type="Script" id=1]
+[ext_resource path="res://fotos/nave_personagem.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 27, 8 )
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 496, 312 )
+
+[node name="TiroPlayerUm" type="Area2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="TiroPlayerUm"]
+position = Vector2( 12.5, -1.75 )
+scale = Vector2( 1.78125, 1.38889 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 241, 641, 32, 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TiroPlayerUm"]
+position = Vector2( 12, -2 )
+shape = SubResource( 1 )

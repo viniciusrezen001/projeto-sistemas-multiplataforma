@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/som_sabre.mp3-7a9b18bae32cf6b7d2263590bc00eac8.mp3str"
+
+[deps]
+
+source_file="res://sons/som_sabre.mp3"
+dest_files=[ "res://.import/som_sabre.mp3-7a9b18bae32cf6b7d2263590bc00eac8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

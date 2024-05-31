@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fotos/nave_personagem.png" type="Texture" id=1]
+[ext_resource path="res://terceirafase/script_nave_consertada.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 368, 134 )
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 366, 310 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( -251, 42 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+position = Vector2( -247, 38 )
+scale = Vector2( 4.35897, 4.91667 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 352, 234, 156, 48 )
+
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
+rotating = true
+current = true
+zoom = Vector2( 2, 2 )
